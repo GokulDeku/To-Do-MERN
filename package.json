@@ -1,0 +1,24 @@
+{
+  "name": "hci",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "client": "cd client && npm run start",
+    "server": "cd server && npm run start",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GokulDeku/To-Do-MERN.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GokulDeku/To-Do-MERN/issues"
+  },
+  "homepage": "https://github.com/GokulDeku/To-Do-MERN#readme",
+  "devDependencies": {
+    "concurrently": "^7.6.0"
+  }
+}
