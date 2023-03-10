@@ -16,8 +16,6 @@ const Tasks = (props) => {
   const [currentTask, setCurrentTask] = useState("");
   const [editTask, setEditTask] = useState({});
   const [completeFlag, setCompleteFlag] = useState(false);
-
-  // 
   const [todoData, setTodoData] = useState({_id:'', task: '', completed: ''});
   const [openFlag, setOpen] = React.useState(false);
 
@@ -27,6 +25,7 @@ const Tasks = (props) => {
   }
 
   // Gets all task from db on page load
+
   useEffect(() => {
 
     const fetchData = async () => {
@@ -46,12 +45,14 @@ const Tasks = (props) => {
   }, []);
 
   // Sets Current Task in the input field
+
   const currentTaskHandler = (e) => {
     setCurrentTask(e.target.value);
     console.log(currentTask);
   }
 
   // Handles Adding task to the db and updating local list
+
   const submitHandler = (e) => {
 
     e.preventDefault();
@@ -70,13 +71,15 @@ const Tasks = (props) => {
     
   }
 
-  // Handles updation of task
+  // Passes data from Taskbox to Tasks
 
   const passData = (data) => {
 
     setTodoData(data);
     setOpen(!openFlag);
   }
+
+  // Handles updation of task
 
   const updateHandler = (data) => {
 
@@ -115,6 +118,25 @@ const Tasks = (props) => {
     updateCompletedStatus();
   }
 
+  // Deletes the task from local and db
+
+  const deleteHandler = (index) => {
+
+    const deleteData = async() => {
+      try {
+        const tempArr = [...tasks]
+        const changedArr = tempArr.filter((task) => task._id !== index)
+        setTasks(changedArr);
+        await deleteTask(index);
+        setOpen(!openFlag);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    deleteData();
+  }
+
   return (
     <div>
       <TaskForm onSubmit={submitHandler} cth={currentTaskHandler}></TaskForm>
@@ -125,7 +147,7 @@ const Tasks = (props) => {
         <Taskbox tasks={tasks} passData={passData} completeHandler={completeHandler}></Taskbox>
       </div>
     )}
-      <TaskEdit data={todoData} openFlag={openFlag} toggleModal={toggleModal}  updateHandler={updateHandler}></TaskEdit>
+      <TaskEdit data={todoData} openFlag={openFlag} toggleModal={toggleModal}  updateHandler={updateHandler} deleteHandler={deleteHandler}></TaskEdit>
     </div>
   );
 };

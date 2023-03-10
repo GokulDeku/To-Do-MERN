@@ -5,7 +5,7 @@ import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-import { TextField } from '@mui/material';
+import { TextField, Checkbox } from '@mui/material';
 
 const TaskEdit = (props) => {
 
@@ -30,6 +30,7 @@ const TaskEdit = (props) => {
     p: 4,
   };
 
+
   return (
     <div>
       <Modal
@@ -38,12 +39,14 @@ const TaskEdit = (props) => {
 
         <Box sx={style}>
           <Typography variant="h6" component="h2">
+            <Checkbox color="secondary" size="medium" />
             <TextField value={editBox.task} label="Task" size="small" 
             onChange={(e) => setEditBox({...editBox, task: e.target.value})}
-            InputLabelProps={{shrink: true}}/>
+            InputLabelProps={{shrink: true}} color="secondary"/>
           </Typography>
           <Typography sx={{ mt: 2 }}>
-            <Button onClick={() => props.updateHandler(editBox)}>Update</Button><Button>Delete</Button>
+            <Button onClick={() => props.updateHandler(editBox)} variant="contained" style={{marginRight: '110px'}} >Update</Button>
+            <Button onClick={() => props.deleteHandler(editBox._id)} variant="contained" style={{marginLeft: '110px'}} color="error" >Delete</Button>
           </Typography>
         </Box>
       </Modal>
