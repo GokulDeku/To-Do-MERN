@@ -10,7 +10,7 @@ import { TextField, Checkbox } from '@mui/material';
 const TaskEdit = (props) => {
 
   const [editBox, setEditBox] = useState({
-    _id:'', task: '', completed: ''
+    _id:'', task: '', completed: false
   });
   
   useEffect(() => {
@@ -39,7 +39,8 @@ const TaskEdit = (props) => {
 
         <Box sx={style}>
           <Typography variant="h6" component="h2">
-            <Checkbox color="secondary" size="medium" />
+            <Checkbox color="secondary" size="medium" checked={editBox.completed} 
+            onClick={() => setEditBox({...editBox, completed: !editBox.completed})}/>
             <TextField value={editBox.task} label="Task" size="small" 
             onChange={(e) => setEditBox({...editBox, task: e.target.value})}
             InputLabelProps={{shrink: true}} color="secondary"/>
