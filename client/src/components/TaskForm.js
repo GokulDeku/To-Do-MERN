@@ -4,7 +4,7 @@ const TaskForm = (props) => {
   return (
     <div>
       <form onSubmit={props.onSubmit}>
-        Task: <input type="text" onChange={props.cth}></input>
+        Task: <input type="text" value={props.value} onChange={props.cth}></input>
         <button type="submit">Add Task</button>
       </form>
     </div>

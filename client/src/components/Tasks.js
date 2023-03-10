@@ -87,7 +87,7 @@ const Tasks = (props) => {
       try {
         const tempArr = [...tasks]
         const arrIndex = tempArr.findIndex((task) => task._id === data._id)
-        tempArr[arrIndex].task = data.task;
+        tempArr[arrIndex] = data;
         const {resdata} = await updateTask(data._id, {task: tempArr[arrIndex].task});
         setTasks(tempArr);
         setOpen(!openFlag);
@@ -139,7 +139,7 @@ const Tasks = (props) => {
 
   return (
     <div>
-      <TaskForm onSubmit={submitHandler} cth={currentTaskHandler}></TaskForm>
+      <TaskForm value={currentTask} onSubmit={submitHandler} cth={currentTaskHandler}></TaskForm>
       {loading && <div>Loading</div>}
       {!loading && (
       <div>
