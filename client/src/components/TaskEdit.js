@@ -14,9 +14,8 @@ const TaskEdit = (props) => {
   });
   
   useEffect(() => {
-    setEditBox(props.data);
+    setEditBox(props.data);   
   }, [props.data])
-
 
   const style = {
     position: 'absolute',
@@ -29,7 +28,6 @@ const TaskEdit = (props) => {
     boxShadow: 24,
     p: 4,
   };
-
 
   return (
     <div>
@@ -44,6 +42,7 @@ const TaskEdit = (props) => {
             <TextField value={editBox.task} label="Task" size="small" 
             onChange={(e) => setEditBox({...editBox, task: e.target.value})}
             InputLabelProps={{shrink: true}} color="secondary"/>
+
           </Typography>
           <Typography sx={{ mt: 2 }}>
             <Button onClick={() => props.updateHandler(editBox)} variant="contained" style={{marginRight: '110px'}} >Update</Button>
